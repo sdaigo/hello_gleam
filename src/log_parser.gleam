@@ -10,21 +10,17 @@ pub fn is_valid_line(line: String) {
 }
 
 pub fn split_line(line: String) -> List(String) {
-  let assert Ok(re) = regex.from_string("<.*?>")
+  let assert Ok(re) = regex.from_string("<[\\~|\\*|=|-]*?>")
   line |> regex.split(re, _)
 }
 
-// Example:
-// [INFO] User Alice created a new project
-// -> [USER] Alice [INFO] User Alice created a new project
 pub fn tag_with_user_name(line: String) -> String {
-  let assert Ok(re) = regex.from_string("<[\\~|\\*|=|-]*?>")
+  let assert Ok(re) = regex.from_string("User\\s+([^\\s]+)")
   let user =
     line
     |> regex.scan(re, _)
     |> list.map(fn(m) { m.submatches })
     |> list.flatten
-
   case list.first(user) {
     Ok(Some(n)) -> "[USER] " <> n <> " " <> line
     _ -> line

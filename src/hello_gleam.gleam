@@ -1,4 +1,5 @@
 import calc
+import external_functions.{reverse_list}
 import gleam/int
 import gleam/io
 import gleam/list
@@ -14,4 +15,6 @@ pub fn main() {
   io.println(int.to_string(result))
 
   mm.pair("Zak Zak", "HAK Hak")
+
+  io.debug(reverse_list([1, 2, 3]))
 }
