@@ -1,5 +1,7 @@
 # hello_gleam
 
+Gleam exercises.
+
 ## Development
 
 ```sh
